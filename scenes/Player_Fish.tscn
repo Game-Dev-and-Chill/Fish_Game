@@ -1,0 +1,94 @@
+[gd_scene load_steps=8 format=3 uid="uid://btyrci6457qxw"]
+
+[ext_resource type="Script" path="res://scripts/Body.gd" id="1_iq0t7"]
+[ext_resource type="Texture2D" uid="uid://djyjojug13kla" path="res://art/fish-removebg-preview.png" id="2_6uot4"]
+
+[sub_resource type="Animation" id="Animation_lenxk"]
+resource_name = "first_evolution"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Sprite2D:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_acylu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Sprite2D:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_u3cm8"]
+resource_name = "second_evolution"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Sprite2D:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 1, 1, 1), Color(1, 1, 0.137255, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ufnkg"]
+resource_name = "third_evolution"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Sprite2D:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 0.137255, 1), Color(1, 0, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_idomm"]
+_data = {
+"RESET": SubResource("Animation_acylu"),
+"first_evolution": SubResource("Animation_lenxk"),
+"second_evolution": SubResource("Animation_u3cm8"),
+"third_evolution": SubResource("Animation_ufnkg")
+}
+
+[node name="Player" type="Node2D"]
+
+[node name="Body" type="CharacterBody2D" parent="." groups=["player"]]
+script = ExtResource("1_iq0t7")
+
+[node name="Sprite2D" type="Sprite2D" parent="Body"]
+scale = Vector2(-0.06, 0.06)
+texture = ExtResource("2_6uot4")
+
+[node name="Area" type="Area2D" parent="Body"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Body/Area"]
+visible = false
+rotation = 3.14159
+scale = Vector2(0.06, -0.06)
+polygon = PackedVector2Array(46, -175.6, 46, -174.3, 73, -161.3, 73, -159.9, 101, -135.9, 101, -133.7, 110, -122.7, 110, -120.5, 115.2, -110, 116.4, -110, 158, -93.4, 158, -92.1, 185, -75.1, 185, -73.8, 215, -42.8, 215, -40.6, 228, -19.6, 228, -16.3, 233, -4.39999, 233, 4, 234.2, 15, 232.7, 15, 229.7, 32, 228.3, 32, 219.3, 53, 218, 53, 209, 66, 207.8, 66, 187.9, 87, 185.6, 87, 163, 103, 163, 106.4, 154.4, 128, 153, 128, 135, 151, 132.6, 151, 118.6, 161, 115.4, 161, 102.4, 166, 95.9, 166, 80, 164.9, 80, 162.7, 71, 152.8, 71, 143.5, 80.6, 127, 77.9, 127, 51.8, 151, 49.4, 151, 29.4, 160, 24.1, 160, -5, 162.2, -5, 161, -16, 161, -16, 159.5, -31, 155.5, -31, 153.7, -41, 141.7, -41, 127, -39.3, 127, -35.3, 118, -33.7, 118, -14, 101.1, -14.6, 101, -30, 91.1, -30, 89.9, -47.3, 73.6, -57.9, 90, -59.1, 90, -74.1, 106, -76.3, 106, -89.3, 117, -91.5, 117, -105.5, 125, -108.7, 125, -125.6, 132, -129.6, 132, -152.8, 137, -180.4, 137, -193, 131.3, -193, 129.5, -202, 116.6, -202, 103.8, -200.6, 98, -199.1, 98, -177, 58.5, -177, 55.6, -158.3, 12, -157, 12, -150, 2.7, -169, -19.3, -169, -21.4, -190, -54.4, -190, -56.6, -216, -112.6, -216, -115.5, -219, -121.5, -219, -137, -217, -137, -208, -149, -205.5, -149, -200.6, -152, -184.8, -152, -130, -138.6, -130, -137.3, -94, -121.3, -94, -120.1, -75, -109.2, -75, -107.9, -55, -89.9, -55, -87.7, -44.3, -75.3, -42, -77.2, -54, -92.3, -54, -104.5, -50.2, -112, -48.9, -112, -43.9, -118, -41.5, -118, -22, -127.3, -22, -128, -9, -138, -9, -139.4, 2.60001, -171, 4.10001, -171, 10.1, -178, 12.7, -178, 17, -179.4, 17, -181.4)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_idomm")
+}
