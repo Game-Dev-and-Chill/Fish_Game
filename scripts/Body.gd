@@ -12,6 +12,7 @@ extends CharacterBody2D
 @onready var enemy_parent: Node2D = main_game.get_node("Enemies")
 @onready var score_label: Label = main_game.get_node("Score/Value")
 @onready var main_menu: PanelContainer = main_game.get_node("Main Menu")
+@export var audio_eat : AudioStreamPlayer
 
 var alive = true
 var size = scale.x
@@ -21,7 +22,7 @@ func _ready():
 	var area = get_node("Area") as Area2D
 	area.connect("body_entered", _on_Body_area_entered)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	var direction = Input.get_vector("left", "right", "up", "down")
 	
 	if direction.x > 0:
@@ -42,11 +43,15 @@ func _physics_process(delta):
 	
 	move_and_slide()
 	
-	global_position.x = clampf(global_position.x, 10, 1905)
-	global_position.y = clampf(global_position.y, 10, 1000)
+	global_position.x = clampf(global_position.x, 10, get_viewport_rect().size.x - 10)
+	global_position.y = clampf(global_position.y, 10, get_viewport_rect().size.y - 10)
 
 func _on_Body_area_entered(body):
+	#eat
 	if body.scale.x < size:
+		randomize()
+		audio_eat.pitch_scale = randf_range(0.85, 1.25)
+		audio_eat.play()
 		size *= (1 + body.scale.x / 100)
 		
 		var new_speed = 540 / (size + 0.8)
@@ -56,10 +61,11 @@ func _on_Body_area_entered(body):
 		scale = Vector2(size, size)
 		
 		evolve_fish()
+		body.spawn_death_effect()
 		body.get_parent().queue_free()
 		get_tree().current_scene.fish_count -= 1
 		print(get_tree().current_scene.fish_count)
-	else:
+	else: #die
 		main_menu.show()
 		player.queue_free()
 		

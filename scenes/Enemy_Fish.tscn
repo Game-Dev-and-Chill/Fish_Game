@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://coxp3b6q3gib4"]
+[gd_scene load_steps=5 format=3 uid="uid://coxp3b6q3gib4"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_kohmq"]
+[ext_resource type="Shader" path="res://scenes/Enemy_Fish.gdshader" id="2_7sk5d"]
 [ext_resource type="Texture2D" uid="uid://buwgctnbnd8o5" path="res://art/Enemy_Fish.png" id="2_tu8s4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_caiif"]
+shader = ExtResource("2_7sk5d")
+shader_parameter/rate = 2.5
+shader_parameter/factor = 0.025
 
 [node name="Enemy" type="Node2D"]
 
@@ -9,6 +15,7 @@
 script = ExtResource("1_kohmq")
 
 [node name="Sprite2D" type="Sprite2D" parent="Body"]
+material = SubResource("ShaderMaterial_caiif")
 scale = Vector2(0.03, 0.03)
 texture = ExtResource("2_tu8s4")
 

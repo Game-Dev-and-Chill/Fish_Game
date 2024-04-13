@@ -6,6 +6,8 @@ extends Node
 @export var score_label: Label
 @export var main_menu: PanelContainer
 
+signal game_started
+
 var player
 var body
 var spawning = false
@@ -18,8 +20,8 @@ var score: int = 0:
 func _ready() -> void:
 	score_label.text = str(0)
 
-func _physics_process(delta):
-	if player:
+func _physics_process(_delta):
+	if is_instance_valid(player):
 		body = player.get_node("Body")
 		
 		while body.alive and not spawning:
@@ -28,6 +30,7 @@ func _physics_process(delta):
 			spawning = true
 
 func game_start():
+	emit_signal("game_started")
 	player = player_fish.instantiate()
 	player.global_position = Vector2(ProjectSettings.get("display/window/size/viewport_width"), ProjectSettings.get("display/window/size/viewport_height")) / 2
 	add_child(player)

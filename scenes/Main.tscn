@@ -1,10 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://dbptw3frq8p8k"]
+[gd_scene load_steps=13 format=3 uid="uid://dbptw3frq8p8k"]
 
 [ext_resource type="Script" path="res://scripts/Game.gd" id="1_xoika"]
 [ext_resource type="PackedScene" uid="uid://btyrci6457qxw" path="res://scenes/Player_Fish.tscn" id="2_5hfuo"]
 [ext_resource type="PackedScene" uid="uid://coxp3b6q3gib4" path="res://scenes/Enemy_Fish.tscn" id="3_yf0uh"]
 [ext_resource type="Script" path="res://scripts/bubble_spawner.gd" id="4_foyab"]
 [ext_resource type="PackedScene" uid="uid://cat6f0uofxtbw" path="res://scenes/bubble.tscn" id="5_x1iuh"]
+[ext_resource type="AudioStream" uid="uid://bovj2826eh5v5" path="res://audio/sm64jrb.mp3" id="6_pmemp"]
+[ext_resource type="Script" path="res://scripts/Music.gd" id="7_ho5cv"]
+[ext_resource type="Script" path="res://scripts/AudioAmbience.gd" id="8_1quso"]
+[ext_resource type="AudioStream" uid="uid://cjwbjeeepbdo8" path="res://audio/ambience.mp3" id="8_2aa1m"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_84ssn"]
 bg_color = Color(0, 0.658824, 0.843137, 1)
@@ -92,5 +96,30 @@ bubble_scene = ExtResource("5_x1iuh")
 wait_time = 0.1
 autostart = true
 
+[node name="Audio" type="Node" parent="."]
+
+[node name="Music" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("6_pmemp")
+volume_db = -15.0
+bus = &"Music"
+script = ExtResource("7_ho5cv")
+
+[node name="SubAmbience" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("8_2aa1m")
+volume_db = -10.0
+bus = &"Music"
+script = ExtResource("7_ho5cv")
+play_on_launch = true
+
+[node name="Ambience" type="AudioStreamPlayer" parent="Audio" node_paths=PackedStringArray("timer")]
+script = ExtResource("8_1quso")
+timer = NodePath("Timer")
+max_time = 60.0
+min_time = 16.0
+
+[node name="Timer" type="Timer" parent="Audio/Ambience"]
+
+[connection signal="game_started" from="." to="Audio/Music" method="_on_main_game_game_started"]
+[connection signal="game_started" from="." to="Audio/SubAmbience" method="_on_main_game_game_started"]
 [connection signal="pressed" from="Main Menu/CenterContainer/VBoxContainer/Start" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Main Menu/CenterContainer/VBoxContainer/Exit" to="." method="_on_quit"]
