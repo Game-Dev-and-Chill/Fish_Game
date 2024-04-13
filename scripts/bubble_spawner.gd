@@ -1,7 +1,6 @@
 extends Node2D
 
 @export var bubble_scene : PackedScene
-
 @onready var bubble_spawn_timer: Timer = $Timer
 
 func _ready() -> void:

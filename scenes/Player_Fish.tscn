@@ -3,21 +3,6 @@
 [ext_resource type="Script" path="res://scripts/Body.gd" id="1_iq0t7"]
 [ext_resource type="Texture2D" uid="uid://djyjojug13kla" path="res://art/fish-removebg-preview.png" id="2_6uot4"]
 
-[sub_resource type="Animation" id="Animation_lenxk"]
-resource_name = "first_evolution"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Body/Sprite2D:self_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(0, 1, 1, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_acylu"]
 length = 0.001
 tracks/0/type = "value"
@@ -31,6 +16,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_lenxk"]
+resource_name = "first_evolution"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Sprite2D:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_u3cm8"]
@@ -65,16 +65,17 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_idomm"]
 _data = {
-"RESET": SubResource("Animation_acylu"),
-"first_evolution": SubResource("Animation_lenxk"),
-"second_evolution": SubResource("Animation_u3cm8"),
-"third_evolution": SubResource("Animation_ufnkg")
+"1.5": SubResource("Animation_lenxk"),
+"2.5": SubResource("Animation_u3cm8"),
+"3.5": SubResource("Animation_ufnkg"),
+"RESET": SubResource("Animation_acylu")
 }
 
 [node name="Player" type="Node2D"]
 
-[node name="Body" type="CharacterBody2D" parent="." groups=["player"]]
+[node name="Body" type="CharacterBody2D" parent="." node_paths=PackedStringArray("sprite") groups=["player"]]
 script = ExtResource("1_iq0t7")
+sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="Body"]
 scale = Vector2(-0.06, 0.06)

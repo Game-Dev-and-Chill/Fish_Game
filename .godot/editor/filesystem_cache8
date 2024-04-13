@@ -1,0 +1,30 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1712964407
+export_presets.cfg::TextFile::-1::1712962304::0::1::::<><>::
+README.md::TextFile::-1::1712962303::0::1::::<><>::
+::res://art/::1712964763
+bubble_6.png::CompressedTexture2D::5017848663511573122::1712962303::1712962393::1::::<><>::
+Enemy_Fish.png::CompressedTexture2D::3835982758676546886::1712964694::1712964764::1::::<><>::
+fish game.apple-touch-icon.png::CompressedTexture2D::1800147926298340917::1712962303::1712962393::1::::<><>::
+fish game.icon.png::CompressedTexture2D::5574241098056522707::1712962303::1712962393::1::::<><>::
+fish game.png::CompressedTexture2D::5936338078849749843::1712962303::1712962393::1::::<><>::
+fish-removebg-preview.png::CompressedTexture2D::7841078667883305310::1712962303::1712962393::1::::<><>::
+FISH.png::CompressedTexture2D::1410544379808638242::1712964763::1712964764::1::::<><>::
+icon.svg::CompressedTexture2D::990001145036629908::1712962303::1712962393::1::::<><>::
+rainbow_fishy.png::CompressedTexture2D::9139332217514802972::1712962303::1712962393::1::::<><>::
+::res://export/::1712962393
+fish game.apple-touch-icon.png::CompressedTexture2D::3697992549013617136::1712962303::1712962393::1::::<><>::
+fish game.icon.png::CompressedTexture2D::7864383532601319890::1712962303::1712962393::1::::<><>::
+fish game.png::CompressedTexture2D::1652304206255280262::1712962303::1712962393::1::::<><>::
+::res://scenes/::1712964486
+bubble.tscn::PackedScene::4813957045082168268::1712964486::0::1::::<><>::uid://cdqxh76yvr2li::::res://art/bubble_6.png<>res://scripts/bubble.gd
+Enemy_Fish.tscn::PackedScene::5803926724959780751::1712964486::0::1::::<><>::res://scripts/enemy.gd<>uid://buwgctnbnd8o5::::res://art/Enemy_Fish.png
+Main.tscn::PackedScene::7261610950529627920::1712964486::0::1::::<><>::res://scripts/Game.gd<>uid://btyrci6457qxw::::res://scenes/Player_Fish.tscn<>uid://coxp3b6q3gib4::::res://scenes/Enemy_Fish.tscn<>res://scripts/bubble_spawner.gd<>uid://cat6f0uofxtbw::::res://scenes/bubble.tscn
+Player_Fish.tscn::PackedScene::3770590008812723108::1712964486::0::1::::<><>::res://scripts/Body.gd<>uid://djyjojug13kla::::res://art/fish-removebg-preview.png
+::res://scripts/::1712964437
+Body.gd::GDScript::-1::1712964437::0::1::::<>CharacterBody2D<>::
+bubble.gd::GDScript::-1::1712963819::0::1::::<>Sprite2D<>::
+bubble_spawner.gd::GDScript::-1::1712964042::0::1::::<>Node2D<>::
+enemy.gd::GDScript::-1::1712963982::0::1::::<>CharacterBody2D<>::
+Game.gd::GDScript::-1::1712963719::0::1::::<>Node<>::
+Main_Menu.gd::GDScript::-1::1712962304::0::1::::<>CenterContainer<>::
