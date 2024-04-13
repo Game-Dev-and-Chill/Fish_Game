@@ -104,9 +104,9 @@ _data = {
 [node name="Body" type="CharacterBody2D" parent="." node_paths=PackedStringArray("sprite", "audio_eat") groups=["player"]]
 script = ExtResource("1_iq0t7")
 sprite = NodePath("Sprite2D")
-audio_eat = NodePath("../Eat")
 normal_sprite = ExtResource("2_docw1")
 powerup_sprite = ExtResource("3_unft7")
+audio_eat = NodePath("../Eat")
 
 [node name="Sprite2D" type="Sprite2D" parent="Body"]
 modulate = Color(0.5, 1, 1, 1)

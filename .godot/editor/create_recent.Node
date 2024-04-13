@@ -1,8 +1,8 @@
+MarginContainer
+Control
+TextureRect
 AnimationPlayer
 AnimationTree
-MarginContainer
-TextureRect
-Control
 ColorRect
 Button
 HBoxContainer
@@ -12,4 +12,3 @@ Panel
 Sprite2D
 CenterContainer
 Node
-CollisionShape2D
