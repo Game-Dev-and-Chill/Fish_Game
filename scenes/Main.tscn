@@ -73,6 +73,21 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nmj8y"]
 size = Vector2(1695, 13)
 
+[sub_resource type="Animation" id="Animation_d5xtp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CenterContainer/MarginContainer/Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.54902)]
+}
+
 [sub_resource type="Animation" id="Animation_x4jg8"]
 resource_name = "blink_text"
 length = 2.0
@@ -88,21 +103,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0.54902), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_d5xtp"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CenterContainer/MarginContainer/Label:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0.54902)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lk2f6"]
