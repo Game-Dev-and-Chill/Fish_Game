@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dbptw3frq8p8k"]
+[gd_scene load_steps=31 format=3 uid="uid://dbptw3frq8p8k"]
 
 [ext_resource type="Script" path="res://scripts/Game.gd" id="1_xoika"]
 [ext_resource type="PackedScene" uid="uid://btyrci6457qxw" path="res://scenes/Player_Fish.tscn" id="2_5hfuo"]
@@ -15,6 +15,11 @@
 [ext_resource type="Script" path="res://scripts/AudioAmbience.gd" id="8_1quso"]
 [ext_resource type="AudioStream" uid="uid://cjwbjeeepbdo8" path="res://audio/ambience.mp3" id="8_2aa1m"]
 [ext_resource type="PackedScene" uid="uid://c25irjkw61pro" path="res://art/Fish/ai_fish/Fish_3_Collider.tscn" id="9_6hr75"]
+[ext_resource type="Theme" uid="uid://don44njiwgl2k" path="res://resources/primary_theme.tres" id="10_nlfux"]
+[ext_resource type="Script" path="res://scripts/credits_screen.gd" id="11_e0fxu"]
+[ext_resource type="Script" path="res://scripts/credits_button.gd" id="11_p1xu5"]
+[ext_resource type="Texture2D" uid="uid://ce5wpfqegjxm3" path="res://art/you_died.jpg" id="19_hs67i"]
+[ext_resource type="Script" path="res://scripts/game_over.gd" id="19_yr6wo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dcl5m"]
 bg_color = Color(0, 0.643137, 0.917647, 1)
@@ -68,6 +73,44 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nmj8y"]
 size = Vector2(1695, 13)
 
+[sub_resource type="Animation" id="Animation_x4jg8"]
+resource_name = "blink_text"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CenterContainer/MarginContainer/Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.54902), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_d5xtp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CenterContainer/MarginContainer/Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.54902)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lk2f6"]
+_data = {
+"RESET": SubResource("Animation_d5xtp"),
+"blink_text": SubResource("Animation_x4jg8")
+}
+
 [node name="Main Game" type="Node" node_paths=PackedStringArray("enemies_parent", "score_label", "highscore_label", "main_menu", "animiation_player", "powerup_timer")]
 script = ExtResource("1_xoika")
 player_fish = ExtResource("2_5hfuo")
@@ -77,14 +120,14 @@ ai_alt_enemy_fish_colliders = Array[PackedScene]([ExtResource("7_l54jb"), ExtRes
 ai_alt_enemy_fish_scales = Array[float]([0.07, 0.035, 0.07])
 enemies_parent = NodePath("Enemies")
 score_label = NodePath("Score/Value")
-highscore_label = NodePath("Highscore/HighscoreValue")
+highscore_label = NodePath("Highscore/HBoxContainer/HighscoreValue")
 main_menu = NodePath("Main Menu")
 animiation_player = NodePath("AnimationPlayer")
 powerup_timer = NodePath("powerup_timer")
 show_comparison_cheat = true
-enable_ai_art = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 anchors_preset = 15
@@ -128,16 +171,113 @@ theme_override_constants/separation = 10
 [node name="Start" type="Button" parent="Main Menu/CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 64
+theme = ExtResource("10_nlfux")
+theme_override_font_sizes/font_size = 60
 text = "Start
 "
 
 [node name="Exit" type="Button" parent="Main Menu/CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 64
+theme = ExtResource("10_nlfux")
+theme_override_font_sizes/font_size = 60
 text = "Exit
 "
+
+[node name="MarginContainer" type="MarginContainer" parent="Main Menu"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 1029
+theme_override_constants/margin_top = 580
+theme_override_constants/margin_right = 41
+theme_override_constants/margin_bottom = 25
+
+[node name="CreditsButton" type="Button" parent="Main Menu/MarginContainer" node_paths=PackedStringArray("credits_screen", "score_label", "highscore_label")]
+layout_mode = 2
+theme = ExtResource("10_nlfux")
+theme_override_font_sizes/font_size = 25
+text = "credits"
+script = ExtResource("11_p1xu5")
+credits_screen = NodePath("../../CreditsScreen")
+score_label = NodePath("../../../Score")
+highscore_label = NodePath("../../../Highscore")
+
+[node name="CreditsScreen" type="Control" parent="Main Menu" node_paths=PackedStringArray("credits_back_button", "score_label", "highscore_label")]
+visible = false
+layout_mode = 2
+script = ExtResource("11_e0fxu")
+credits_back_button = NodePath("HBoxContainer/VBoxContainer/MarginContainer/BackButton")
+score_label = NodePath("../../Score")
+highscore_label = NodePath("../../Highscore")
+
+[node name="ColorRect" type="ColorRect" parent="Main Menu/CreditsScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0352941, 0, 0.0784314, 0.980392)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Main Menu/CreditsScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Main Menu/CreditsScreen/HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Main Menu/CreditsScreen/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "GalyGames - "
+
+[node name="Label2" type="Label" parent="Main Menu/CreditsScreen/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "_booch - "
+
+[node name="Label3" type="Label" parent="Main Menu/CreditsScreen/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Nici - "
+
+[node name="Label4" type="Label" parent="Main Menu/CreditsScreen/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "NovaDawn - "
+
+[node name="Label5" type="Label" parent="Main Menu/CreditsScreen/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "WiseNoodle - "
+
+[node name="Label7" type="Label" parent="Main Menu/CreditsScreen/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Spudnut2000 - "
+
+[node name="Label6" type="Label" parent="Main Menu/CreditsScreen/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Sinewave - "
+
+[node name="MarginContainer" type="MarginContainer" parent="Main Menu/CreditsScreen/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 90
+theme_override_constants/margin_right = 60
+
+[node name="BackButton" type="Button" parent="Main Menu/CreditsScreen/HBoxContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("10_nlfux")
+theme_override_font_sizes/font_size = 35
+text = "Back"
 
 [node name="Score" type="HBoxContainer" parent="."]
 anchors_preset = 10
@@ -158,19 +298,21 @@ size_flags_horizontal = 4
 text = "0"
 label_settings = SubResource("LabelSettings_glr1q")
 
-[node name="Highscore" type="HBoxContainer" parent="."]
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 23.0
-grow_horizontal = 2
+[node name="Highscore" type="MarginContainer" parent="."]
+offset_right = 204.0
+offset_bottom = 45.0
+theme_override_constants/margin_left = 10
 
-[node name="Label" type="Label" parent="Highscore"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Highscore"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Highscore/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Highscore: "
 label_settings = SubResource("LabelSettings_glr1q")
 
-[node name="HighscoreValue" type="Label" parent="Highscore"]
+[node name="HighscoreValue" type="Label" parent="Highscore/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "0"
@@ -218,20 +360,55 @@ shape = SubResource("RectangleShape2D_nmj8y")
 
 [node name="powerup_timer" type="Node" parent="."]
 
-[node name="game_over" type="CenterContainer" parent="."]
+[node name="game_over" type="Control" parent="." node_paths=PackedStringArray("animation_player")]
 visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("19_yr6wo")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="ColorRect" type="ColorRect" parent="game_over"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0352941, 0, 0.0784314, 0.980392)
+
+[node name="CenterContainer" type="CenterContainer" parent="game_over"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="game_over"]
+[node name="TextureRect" type="TextureRect" parent="game_over/CenterContainer"]
+layout_mode = 2
+texture = ExtResource("19_hs67i")
+
+[node name="MarginContainer" type="MarginContainer" parent="game_over/CenterContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 400
+
+[node name="Label" type="Label" parent="game_over/CenterContainer/MarginContainer"]
+process_mode = 3
 modulate = Color(1, 1, 1, 0.54902)
 layout_mode = 2
-text = "Game over
-press any key to continue"
+theme_override_font_sizes/font_size = 35
+text = "press any key to continue"
 horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="game_over"]
+process_mode = 3
+libraries = {
+"": SubResource("AnimationLibrary_lk2f6")
+}
 
 [connection signal="game_started" from="." to="Audio/Music" method="_on_main_game_game_started"]
 [connection signal="game_started" from="." to="Audio/SubAmbience" method="_on_main_game_game_started"]

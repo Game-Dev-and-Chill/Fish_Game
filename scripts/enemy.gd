@@ -10,15 +10,15 @@ extends CharacterBody2D
 @onready var parent = get_parent()
 
 func _physics_process(_delta):
-    if parent:
-        parent.position.x += -sign(direction - 1.5) * clamp(1 * Speed / 150, 1, 100000)
-        
-        if parent.position.x > 1400 or parent.position.x < -200:
-            get_tree().current_scene.fish_count -= 1
-            parent.queue_free()
+	if parent:
+		parent.position.x += -sign(direction - 1.5) * clamp(1 * Speed / 150, 1, 100000)
+		
+		if parent.position.x > 1400 or parent.position.x < -200:
+			get_tree().current_scene.fish_count -= 1
+			parent.queue_free()
 
 func spawn_death_effect():
-    var _death_effect = death_effect.instantiate()
-    get_parent().get_parent().add_child(_death_effect)
-    _death_effect.emitting = true
-    _death_effect.global_position = get_parent().global_position
+	var _death_effect = death_effect.instantiate()
+	get_parent().get_parent().add_child(_death_effect)
+	_death_effect.emitting = true
+	_death_effect.global_position = get_parent().global_position

@@ -11,9 +11,11 @@ config_version=5
 [application]
 
 config/name="fish game"
+config/description="Fishy Fishy"
+config/version="0.0.0.9"
 run/main_scene="res://scenes/Main.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://art/icon.svg"
+config/icon="res://art/Fish/fish-removebg-preview.png"
 
 [autoload]
 
