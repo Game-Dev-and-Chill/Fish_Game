@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name Player extends CharacterBody2D 
 
 @export var JUMP_VELOCITY = -400.0
 @export var gravity = 980
@@ -15,32 +15,30 @@ extends CharacterBody2D
 @onready var main_menu: PanelContainer = main_game.get_node("Main Menu")
 @export var audio_eat : AudioStreamPlayer
 
+@export var powerup_timer_limit: float = 3.0
+@export var normal_sprite: Texture2D
+@export var powerup_sprite: Texture2D
+
 var alive = true
 var size = scale.x
 var evolutions = {1.5: false, 2.5: false, 3.5: false}
 
+var has_powerup: bool = false
+var powerup_timer: Timer = Timer.new()
+
 func _ready():
 	var area = get_node("Area") as Area2D
 	area.connect("body_entered", _on_Body_area_entered)
+	area.connect("area_entered", _on_area_area_entered)
+	
+	add_child(powerup_timer)
+	powerup_timer.timeout.connect(_powerup_timer_timeout)
 
 func _physics_process(_delta):
 	var direction = Input.get_vector("left", "right", "up", "down")
 	
 	rotation = direction.angle()
-	
-	
-	#
-	#if direction.x > 0:
-		#if not sprite.flip_h:
-			#collision_polygon_2d.scale *= -1
-		#sprite.flip_h = true
-	#elif direction.x < 0:
-		#if sprite.flip_h:
-			#collision_polygon_2d.scale *= -1
-		#sprite.flip_h = false
-	#
-	
-	
+
 	if direction.length_squared() > 0:
 		direction = direction.normalized()
 		velocity = direction * Speed
@@ -53,12 +51,44 @@ func _physics_process(_delta):
 	global_position.x = clampf(global_position.x, 10, get_viewport_rect().size.x - 10)
 	global_position.y = clampf(global_position.y, 10, get_viewport_rect().size.y - 10)
 
+
+func _powerup_collected():
+	print("Got a powerup!")
+	if !has_powerup:
+		has_powerup = true
+		sprite.texture = powerup_sprite
+		_reset_powerup_timer()
+	else:
+		_reset_powerup_timer()
+
+
+func _on_area_area_entered(area):
+	if area is Powerup:
+		_powerup_collected()
+
+
+func _reset_powerup_timer():
+	print("Powerup timer restarted")
+	if (powerup_timer.time_left > 0):
+		powerup_timer.stop()
+		powerup_timer.start(powerup_timer_limit)
+	else:
+		powerup_timer.start(powerup_timer_limit)
+
+
+func _powerup_timer_timeout():
+	print("Powerup timer ended")
+	has_powerup = false;
+	sprite.texture = normal_sprite
+
+
 func _on_Body_area_entered(body):
-	#eat
-	if body.scale.x < size:
+	if (body.is_in_group("powerup")): return
+	if body.scale.x < size or has_powerup:
 		randomize()
 		audio_eat.pitch_scale = randf_range(0.85, 1.25)
 		audio_eat.play()
+		
 		size *= (1 + body.scale.x / 100)
 		
 		var new_speed = 540 / (size + 0.8)

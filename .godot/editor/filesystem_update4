@@ -1,8 +1,7 @@
-res://scenes/Player_Fish.tscn
-res://scenes/Enemy_Fish.gdshader
 res://scenes/Main.tscn
-res://scenes/blood_effect.tscn
-res://scripts/global_keybinds.gd
+res://scenes/Enemy_Fish.gdshader
+res://scenes/Player_Fish.tscn
+res://scripts/PowerUp.gd
 res://scripts/Body.gd
+res://scenes/Powerup.tscn
 res://scripts/Game.gd
-res://scripts/enemy.gd

@@ -1,43 +1,48 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1712972655
-default_bus_layout.tres::AudioBusLayout::629075530621397627::1712972584::0::1::::<><>::
-export_presets.cfg::TextFile::-1::1712972585::0::1::::<><>::
-README.md::TextFile::-1::1712972584::0::1::::<><>::
-::res://art/::1712972584
-bubble_6.png::CompressedTexture2D::5017848663511573122::1712972584::1712972584::1::::<><>::
-Enemy_Fish.png::CompressedTexture2D::3835982758676546886::1712972584::1712972584::1::::<><>::
-fish game.apple-touch-icon.png::CompressedTexture2D::1800147926298340917::1712972584::1712972584::1::::<><>::
-fish game.icon.png::CompressedTexture2D::5574241098056522707::1712972584::1712972584::1::::<><>::
-fish game.png::CompressedTexture2D::5936338078849749843::1712972584::1712972584::1::::<><>::
-fish-removebg-preview.png::CompressedTexture2D::7841078667883305310::1712972584::1712972584::1::::<><>::
-FISH.png::CompressedTexture2D::1410544379808638242::1712972584::1712972584::1::::<><>::
-icon.svg::CompressedTexture2D::990001145036629908::1712972584::1712972584::1::::<><>::
-rainbow_fishy.png::CompressedTexture2D::9139332217514802972::1712972584::1712972584::1::::<><>::
-::res://audio/::1712972584
-ambience.mp3::AudioStreamMP3::5450034276330167425::1712972584::1712972584::1::::<><>::
-eat.ogg::AudioStreamOggVorbis::4560173874678020275::1712972584::1712972584::1::::<><>::
-sm64jrb.mp3::AudioStreamMP3::3413012873225568120::1712972584::1712972584::1::::<><>::
-woosh1.mp3::AudioStreamMP3::2109974352129825299::1712972584::1712972584::1::::<><>::
-woosh2.mp3::AudioStreamMP3::2952344432521996121::1712972584::1712972584::1::::<><>::
-woosh3.mp3::AudioStreamMP3::915159791178633766::1712972584::1712972584::1::::<><>::
-::res://export/::1712972585
-fish game.apple-touch-icon.png::CompressedTexture2D::3697992549013617136::1712972585::1712972585::1::::<><>::
-fish game.icon.png::CompressedTexture2D::7864383532601319890::1712972585::1712972585::1::::<><>::
-fish game.png::CompressedTexture2D::1652304206255280262::1712972585::1712972585::1::::<><>::
-::res://scenes/::1712972631
-blood_effect.tscn::PackedScene::8510358330298356840::1712972586::0::1::::<><>::res://scripts/death_effect.gd
-bubble.tscn::PackedScene::4813957045082168268::1712972586::0::1::::<><>::uid://cdqxh76yvr2li::::res://art/bubble_6.png<>res://scripts/bubble.gd
-Enemy_Fish.gdshader::Shader::-1::1712972631::0::1::::<><>::
-Enemy_Fish.tscn::PackedScene::5803926724959780751::1712972631::0::1::::<><>::res://scripts/enemy.gd<>res://scenes/Enemy_Fish.gdshader<>uid://buwgctnbnd8o5::::res://art/Enemy_Fish.png
-Main.tscn::PackedScene::7261610950529627920::1712972586::0::1::::<><>::res://scripts/Game.gd<>uid://btyrci6457qxw::::res://scenes/Player_Fish.tscn<>uid://coxp3b6q3gib4::::res://scenes/Enemy_Fish.tscn<>res://scripts/bubble_spawner.gd<>uid://cat6f0uofxtbw::::res://scenes/bubble.tscn<>uid://bovj2826eh5v5::::res://audio/sm64jrb.mp3<>res://scripts/Music.gd<>res://scripts/AudioAmbience.gd<>uid://cjwbjeeepbdo8::::res://audio/ambience.mp3
-Player_Fish.tscn::PackedScene::3770590008812723108::1712972631::0::1::::<><>::res://scripts/Body.gd<>uid://djyjojug13kla::::res://art/fish-removebg-preview.png<>res://scenes/Enemy_Fish.gdshader<>uid://b578nrqant532::::res://audio/eat.ogg
-::res://scripts/::1712972586
-AudioAmbience.gd::GDScript::-1::1712972586::0::1::::<>AudioStreamPlayer<>::
-Body.gd::GDScript::-1::1712972586::0::1::::<>CharacterBody2D<>::
-bubble.gd::GDScript::-1::1712972586::0::1::::<>Sprite2D<>::
-bubble_spawner.gd::GDScript::-1::1712972586::0::1::::<>Node2D<>::
-death_effect.gd::GDScript::-1::1712972586::0::1::::<>GPUParticles2D<>::
-enemy.gd::GDScript::-1::1712972586::0::1::::<>CharacterBody2D<>::
-Game.gd::GDScript::-1::1712972586::0::1::::<>Node<>::
-Main_Menu.gd::GDScript::-1::1712972586::0::1::::<>CenterContainer<>::
-Music.gd::GDScript::-1::1712972586::0::1::::<>AudioStreamPlayer<>::
+::res://::1712977008
+default_bus_layout.tres::AudioBusLayout::629075530621397627::1712976866::0::1::::<><>::
+export_presets.cfg::TextFile::-1::1712976866::0::1::::<><>::
+README.md::TextFile::-1::1712976866::0::1::::<><>::
+::res://art/::1712980895
+bubble_6.png::CompressedTexture2D::5017848663511573122::1712976866::1712976866::1::::<><>::
+Enemy_Fish.png::CompressedTexture2D::3835982758676546886::1712976866::1712976866::1::::<><>::
+fish game.apple-touch-icon.png::CompressedTexture2D::1800147926298340917::1712976866::1712976866::1::::<><>::
+fish game.icon.png::CompressedTexture2D::5574241098056522707::1712976866::1712976866::1::::<><>::
+fish game.png::CompressedTexture2D::5936338078849749843::1712976866::1712976866::1::::<><>::
+fish-removebg-preview.png::CompressedTexture2D::7841078667883305310::1712976866::1712976866::1::::<><>::
+FISH.png::CompressedTexture2D::1410544379808638242::1712976866::1712976866::1::::<><>::
+fish_egg.png::CompressedTexture2D::5745445659738995396::1712978598::1712978602::1::::<><>::
+icon.svg::CompressedTexture2D::990001145036629908::1712976866::1712977009::1::::<><>::
+powerup_fish.png::CompressedTexture2D::4798870141084274717::1712981045::1712981051::1::::<><>::
+rainbow_fishy.png::CompressedTexture2D::9139332217514802972::1712976866::1712976866::1::::<><>::
+::res://audio/::1712976866
+ambience.mp3::AudioStreamMP3::5450034276330167425::1712976866::1712976866::1::::<><>::
+eat.ogg::AudioStreamOggVorbis::4560173874678020275::1712976866::1712976866::1::::<><>::
+sm64jrb.mp3::AudioStreamMP3::3413012873225568120::1712976866::1712976866::1::::<><>::
+woosh1.mp3::AudioStreamMP3::2109974352129825299::1712976866::1712976866::1::::<><>::
+woosh2.mp3::AudioStreamMP3::2952344432521996121::1712976866::1712976866::1::::<><>::
+woosh3.mp3::AudioStreamMP3::915159791178633766::1712976866::1712976866::1::::<><>::
+::res://export/::1712976866
+fish game.apple-touch-icon.png::CompressedTexture2D::3697992549013617136::1712976866::1712976866::1::::<><>::
+fish game.icon.png::CompressedTexture2D::7864383532601319890::1712976866::1712976866::1::::<><>::
+fish game.png::CompressedTexture2D::1652304206255280262::1712976866::1712976866::1::::<><>::
+::res://scenes/::1712980825
+blood_effect.tscn::PackedScene::8510358330298356840::1712976866::0::1::::<><>::res://scripts/death_effect.gd
+bubble.tscn::PackedScene::4813957045082168268::1712976866::0::1::::<><>::uid://cdqxh76yvr2li::::res://art/bubble_6.png<>res://scripts/bubble.gd
+Enemy_Fish.gdshader::Shader::-1::1712980825::0::1::::<><>::
+Enemy_Fish.tscn::PackedScene::5803926724959780751::1712976866::0::1::::<><>::res://scripts/enemy.gd<>res://scenes/Enemy_Fish.gdshader<>uid://buwgctnbnd8o5::::res://art/Enemy_Fish.png
+Main.tscn::PackedScene::7261610950529627920::1712980566::0::1::::<><>::res://scripts/Game.gd<>uid://btyrci6457qxw::::res://scenes/Player_Fish.tscn<>uid://coxp3b6q3gib4::::res://scenes/Enemy_Fish.tscn<>res://scripts/bubble_spawner.gd<>uid://cat6f0uofxtbw::::res://scenes/bubble.tscn<>uid://bovj2826eh5v5::::res://audio/sm64jrb.mp3<>res://scripts/Music.gd<>res://scripts/AudioAmbience.gd<>uid://cjwbjeeepbdo8::::res://audio/ambience.mp3
+Player_Fish.tscn::PackedScene::3770590008812723108::1712980825::0::1::::<><>::res://scripts/Body.gd<>uid://djyjojug13kla::::res://art/fish-removebg-preview.png<>res://scenes/Enemy_Fish.gdshader<>uid://b578nrqant532::::res://audio/eat.ogg
+Powerup.tscn::PackedScene::3378369772775059099::1712980567::0::1::::<><>::uid://cn4ewedatly2g::::res://art/fish_egg.png<>res://scripts/PowerUp.gd
+::res://scripts/::1712980825
+AudioAmbience.gd::GDScript::-1::1712976866::0::1::::<>AudioStreamPlayer<>::
+Body.gd::GDScript::-1::1712980825::0::1::::Player<>CharacterBody2D<>::
+bubble.gd::GDScript::-1::1712976866::0::1::::<>Sprite2D<>::
+bubble_spawner.gd::GDScript::-1::1712976866::0::1::::<>Node2D<>::
+death_effect.gd::GDScript::-1::1712976866::0::1::::<>GPUParticles2D<>::
+enemy.gd::GDScript::-1::1712976866::0::1::::<>CharacterBody2D<>::
+Game.gd::GDScript::-1::1712979423::0::1::::<>Node<>::
+global_keybinds.gd::GDScript::-1::1712976866::0::1::::<>Node<>::
+Main_Menu.gd::GDScript::-1::1712976866::0::1::::<>CenterContainer<>::
+Music.gd::GDScript::-1::1712976866::0::1::::<>AudioStreamPlayer<>::
+PowerUp.gd::GDScript::-1::1712980500::0::1::::Powerup<>Area2D<>::

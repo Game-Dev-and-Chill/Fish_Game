@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://btyrci6457qxw"]
+[gd_scene load_steps=12 format=3 uid="uid://btyrci6457qxw"]
 
 [ext_resource type="Script" path="res://scripts/Body.gd" id="1_iq0t7"]
 [ext_resource type="Texture2D" uid="uid://djyjojug13kla" path="res://art/fish-removebg-preview.png" id="2_6uot4"]
 [ext_resource type="Shader" path="res://scenes/Enemy_Fish.gdshader" id="2_i5s8x"]
 [ext_resource type="AudioStream" uid="uid://b578nrqant532" path="res://audio/eat.ogg" id="3_74ek7"]
+[ext_resource type="Texture2D" uid="uid://camuxp0xodig0" path="res://art/powerup_fish.png" id="3_s8pfb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6c655"]
 shader = ExtResource("2_i5s8x")
@@ -97,6 +98,8 @@ _data = {
 script = ExtResource("1_iq0t7")
 sprite = NodePath("Sprite2D")
 audio_eat = NodePath("../Eat")
+normal_sprite = ExtResource("2_6uot4")
+powerup_sprite = ExtResource("3_s8pfb")
 
 [node name="Sprite2D" type="Sprite2D" parent="Body"]
 modulate = Color(0.5, 1, 1, 1)

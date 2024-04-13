@@ -8,6 +8,8 @@ extends Node
 @export var main_menu: PanelContainer
 @export var animiation_player: AnimationPlayer
 
+const powerup: PackedScene = preload("res://scenes/Powerup.tscn")
+
 signal game_started
 
 var player
@@ -42,6 +44,8 @@ func game_start():
 	player = player_fish.instantiate()
 	player.global_position = Vector2(ProjectSettings.get("display/window/size/viewport_width"), ProjectSettings.get("display/window/size/viewport_height")) / 2
 	add_child(player)
+	
+	spawn_powerup()
 
 func _on_start_button_pressed():
 	main_menu.hide()
@@ -82,3 +86,17 @@ func _spawn_enemy_fish():
 		
 		spawning = false
 		fish_count += 1
+
+func spawn_powerup():
+	var timer = Timer.new()
+	add_child(timer)
+	
+	timer.start(randf_range(30, 100))
+	
+	timer.timeout.connect(func():
+		var p = powerup.instantiate()
+		p.position = Vector2(randf_range(0, 500), 0)
+		add_child(p)
+		timer.queue_free()
+		spawn_powerup()	
+	)
