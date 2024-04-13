@@ -11,6 +11,7 @@ extends CharacterBody2D
 @onready var player: Node2D = main_game.get_node("Player")
 @onready var enemy_parent: Node2D = main_game.get_node("Enemies")
 @onready var score_label: Label = main_game.get_node("Score/Value")
+@onready var highscore_label: Label = main_game.get_node("Highscore/HighscoreValue")
 @onready var main_menu: PanelContainer = main_game.get_node("Main Menu")
 @export var audio_eat : AudioStreamPlayer
 
@@ -25,14 +26,20 @@ func _ready():
 func _physics_process(_delta):
 	var direction = Input.get_vector("left", "right", "up", "down")
 	
-	if direction.x > 0:
-		if not sprite.flip_h:
-			collision_polygon_2d.scale *= -1
-		sprite.flip_h = true
-	elif direction.x < 0:
-		if sprite.flip_h:
-			collision_polygon_2d.scale *= -1
-		sprite.flip_h = false
+	rotation = direction.angle()
+	
+	
+	#
+	#if direction.x > 0:
+		#if not sprite.flip_h:
+			#collision_polygon_2d.scale *= -1
+		#sprite.flip_h = true
+	#elif direction.x < 0:
+		#if sprite.flip_h:
+			#collision_polygon_2d.scale *= -1
+		#sprite.flip_h = false
+	#
+	
 	
 	if direction.length_squared() > 0:
 		direction = direction.normalized()
@@ -58,6 +65,7 @@ func _on_Body_area_entered(body):
 		Speed = 5 if new_speed < 5 else new_speed
 		
 		score_label.text = str(int((size - 1) * 1000))
+		highscore_label.text = str(max(int(highscore_label.text), int(score_label.text)))
 		scale = Vector2(size, size)
 		
 		evolve_fish()

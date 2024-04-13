@@ -13,7 +13,7 @@ func _physics_process(_delta):
 	if parent:
 		parent.position.x += -sign(direction - 1.5) * clamp(1 * Speed / 150, 1, 100000)
 		
-		if parent.position.x > 940 or parent.position.x < -940:
+		if parent.position.x > 1400 or parent.position.x < -200:
 			get_tree().current_scene.fish_count -= 1
 			parent.queue_free()
 

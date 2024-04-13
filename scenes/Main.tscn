@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dbptw3frq8p8k"]
+[gd_scene load_steps=16 format=3 uid="uid://dbptw3frq8p8k"]
 
 [ext_resource type="Script" path="res://scripts/Game.gd" id="1_xoika"]
 [ext_resource type="PackedScene" uid="uid://btyrci6457qxw" path="res://scenes/Player_Fish.tscn" id="2_5hfuo"]
@@ -10,9 +10,6 @@
 [ext_resource type="Script" path="res://scripts/AudioAmbience.gd" id="8_1quso"]
 [ext_resource type="AudioStream" uid="uid://cjwbjeeepbdo8" path="res://audio/ambience.mp3" id="8_2aa1m"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_84ssn"]
-bg_color = Color(0, 0.658824, 0.843137, 1)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dcl5m"]
 bg_color = Color(0, 0.643137, 0.917647, 1)
 
@@ -21,24 +18,77 @@ font_size = 32
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 
-[node name="Main Game" type="Node" node_paths=PackedStringArray("enemies_parent", "score_label", "main_menu")]
+[sub_resource type="LabelSettings" id="LabelSettings_5myqy"]
+font_size = 32
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_b6ciq"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_7qqe2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7eiwc"]
+_data = {
+"RESET": SubResource("Animation_7qqe2"),
+"fade_in": SubResource("Animation_b6ciq")
+}
+
+[node name="Main Game" type="Node" node_paths=PackedStringArray("enemies_parent", "score_label", "highscore_label", "main_menu", "animiation_player")]
 script = ExtResource("1_xoika")
 player_fish = ExtResource("2_5hfuo")
 enemy_fish = ExtResource("3_yf0uh")
 enemies_parent = NodePath("Enemies")
 score_label = NodePath("Score/Value")
+highscore_label = NodePath("Highscore/HighscoreValue")
 main_menu = NodePath("Main Menu")
+animiation_player = NodePath("AnimationPlayer")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_84ssn")
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.658824, 0.843137, 1)
 
 [node name="Enemies" type="Node2D" parent="."]
-position = Vector2(988, 543)
 
 [node name="Main Menu" type="PanelContainer" parent="."]
 anchors_preset = 15
@@ -88,6 +138,24 @@ size_flags_horizontal = 4
 text = "0"
 label_settings = SubResource("LabelSettings_glr1q")
 
+[node name="Highscore" type="HBoxContainer" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="Highscore"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Highscore: "
+label_settings = SubResource("LabelSettings_glr1q")
+
+[node name="HighscoreValue" type="Label" parent="Highscore"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "0"
+label_settings = SubResource("LabelSettings_5myqy")
+
 [node name="BubbleSpawner" type="Node2D" parent="."]
 script = ExtResource("4_foyab")
 bubble_scene = ExtResource("5_x1iuh")
@@ -118,6 +186,11 @@ max_time = 60.0
 min_time = 16.0
 
 [node name="Timer" type="Timer" parent="Audio/Ambience"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7eiwc")
+}
 
 [connection signal="game_started" from="." to="Audio/Music" method="_on_main_game_game_started"]
 [connection signal="game_started" from="." to="Audio/SubAmbience" method="_on_main_game_game_started"]
