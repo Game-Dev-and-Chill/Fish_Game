@@ -3,5 +3,3 @@ res://scenes/Enemy_Fish.gdshader
 res://resources/primary_theme.tres
 res://scenes/Enemy_Fish.tscn
 res://scenes/Player_Fish.tscn
-res://scripts/enemy.gd
-res://scripts/Main_Menu.gd
