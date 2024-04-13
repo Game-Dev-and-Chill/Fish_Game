@@ -9,6 +9,7 @@
 shader = ExtResource("2_i5s8x")
 shader_parameter/rate = 2.5
 shader_parameter/factor = 0.025
+shader_parameter/color = Color(1, 1, 1, 1)
 
 [sub_resource type="Animation" id="Animation_lenxk"]
 resource_name = "first_evolution"

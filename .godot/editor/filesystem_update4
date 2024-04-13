@@ -1,6 +1,7 @@
-res://scenes/Player_Fish.tscn
-res://scenes/Enemy_Fish.gdshader
-res://scenes/Enemy_Fish.tscn
 res://scenes/Main.tscn
+res://scenes/Enemy_Fish.gdshader
 res://scenes/bubble.tscn
+res://scenes/Enemy_Fish.tscn
+res://scenes/Player_Fish.tscn
 res://scenes/blood_effect.tscn
+res://scripts/Body.gd

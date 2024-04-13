@@ -8,6 +8,7 @@
 shader = ExtResource("2_7sk5d")
 shader_parameter/rate = 2.5
 shader_parameter/factor = 0.025
+shader_parameter/color = Color(1, 1, 1, 1)
 
 [node name="Enemy" type="Node2D"]
 
