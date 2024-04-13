@@ -1,0 +1,9 @@
+res://art/Fish/ai_fish/Fish_1_Collider.tscn::004805c41a802c2238a17f5f5a8d5272::1712998165::res://.godot/exported/133200997/export-32880b130fbdb950d1781b9ff674a398-Fish_1_Collider.scn
+res://art/Fish/ai_fish/Fish_2_Collider.tscn::2920e0a81b028cbea698e55e639536f9::1712995614::res://.godot/exported/133200997/export-7a70620474ec1c0a6d4de2d3fc048b53-Fish_2_Collider.scn
+res://art/Fish/ai_fish/Fish_3_Collider.tscn::37dfe0ccb27ce89b441b9645325bbb59::1712995654::res://.godot/exported/133200997/export-c03478c7ece1ca1035e6a137009a973b-Fish_3_Collider.scn
+res://scenes/blood_effect.tscn::b8b1bf0442c95fd0e87d1df60da35dff::1712982523::res://.godot/exported/133200997/export-a271ba03b9c5ae1369dc2b556d03870a-blood_effect.scn
+res://scenes/bubble.tscn::ce5e492fadb1294dfc4d365f096c75db::1712982523::res://.godot/exported/133200997/export-d274b23459d7f9b4c75f69c13caf3405-bubble.scn
+res://scenes/Enemy_Fish.tscn::68c29933e87179033208a78b9dfd2187::1712998165::res://.godot/exported/133200997/export-b2cdfa4be8bdce212ea848c562ab4603-Enemy_Fish.scn
+res://scenes/Main.tscn::7a7664636757c58ab4c1a554a4698ce3::1712998303::res://.godot/exported/133200997/export-4a24720ee5e787dbe30abc634fa3679d-Main.scn
+res://scenes/Player_Fish.tscn::96b34f73f213524efcdca3ce26a1bcd1::1712998165::res://.godot/exported/133200997/export-def9bbbd354d7127e010a66955b49886-Player_Fish.scn
+res://scenes/Powerup.tscn::6050610f8f6ea5ce88fe99bb44364e59::1712998165::res://.godot/exported/133200997/export-d97a9fa78f3abd7917ca468251375a27-Powerup.scn

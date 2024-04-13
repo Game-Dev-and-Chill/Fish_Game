@@ -1,7 +1,6 @@
 res://scenes/Main.tscn
 res://scenes/Enemy_Fish.gdshader
 res://scenes/Player_Fish.tscn
-res://scripts/PowerUp.gd
-res://scripts/Body.gd
 res://scenes/Powerup.tscn
-res://scripts/Game.gd
+res://scenes/Enemy_Fish.tscn
+res://art/Fish/ai_fish/Fish_1_Collider.tscn

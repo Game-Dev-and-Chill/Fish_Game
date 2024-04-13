@@ -4,9 +4,10 @@ extends AudioStreamPlayer
 
 
 func _ready():
-	if play_on_launch:
-		play()
+    process_mode = Node.PROCESS_MODE_ALWAYS
+    if play_on_launch:
+        play()
 
 func _on_main_game_game_started():
-	if !playing:
-		play()
+    if !playing:
+        play()

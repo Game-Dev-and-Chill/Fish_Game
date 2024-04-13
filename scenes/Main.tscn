@@ -1,14 +1,20 @@
-[gd_scene load_steps=17 format=3 uid="uid://dbptw3frq8p8k"]
+[gd_scene load_steps=23 format=3 uid="uid://dbptw3frq8p8k"]
 
 [ext_resource type="Script" path="res://scripts/Game.gd" id="1_xoika"]
 [ext_resource type="PackedScene" uid="uid://btyrci6457qxw" path="res://scenes/Player_Fish.tscn" id="2_5hfuo"]
 [ext_resource type="PackedScene" uid="uid://coxp3b6q3gib4" path="res://scenes/Enemy_Fish.tscn" id="3_yf0uh"]
 [ext_resource type="Script" path="res://scripts/bubble_spawner.gd" id="4_foyab"]
+[ext_resource type="Texture2D" uid="uid://dqa736otnfnww" path="res://art/Fish/ai_fish/Fish_1.png" id="4_gmvtt"]
 [ext_resource type="PackedScene" uid="uid://cat6f0uofxtbw" path="res://scenes/bubble.tscn" id="5_x1iuh"]
+[ext_resource type="Texture2D" uid="uid://sy72ltnl8v1h" path="res://art/Fish/ai_fish/Fish_2.png" id="5_xu8fx"]
+[ext_resource type="Texture2D" uid="uid://co2mrks8ohgkk" path="res://art/Fish/ai_fish/Fish_3.png" id="6_0ekmg"]
 [ext_resource type="AudioStream" uid="uid://bovj2826eh5v5" path="res://audio/sm64jrb.mp3" id="6_pmemp"]
 [ext_resource type="Script" path="res://scripts/Music.gd" id="7_ho5cv"]
+[ext_resource type="PackedScene" uid="uid://5rqk3pjwas4o" path="res://art/Fish/ai_fish/Fish_1_Collider.tscn" id="7_l54jb"]
+[ext_resource type="PackedScene" uid="uid://me1yikbrggs7" path="res://art/Fish/ai_fish/Fish_2_Collider.tscn" id="8_0jknx"]
 [ext_resource type="Script" path="res://scripts/AudioAmbience.gd" id="8_1quso"]
 [ext_resource type="AudioStream" uid="uid://cjwbjeeepbdo8" path="res://audio/ambience.mp3" id="8_2aa1m"]
+[ext_resource type="PackedScene" uid="uid://c25irjkw61pro" path="res://art/Fish/ai_fish/Fish_3_Collider.tscn" id="9_6hr75"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dcl5m"]
 bg_color = Color(0, 0.643137, 0.917647, 1)
@@ -62,15 +68,21 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nmj8y"]
 size = Vector2(1695, 13)
 
-[node name="Main Game" type="Node" node_paths=PackedStringArray("enemies_parent", "score_label", "highscore_label", "main_menu", "animiation_player")]
+[node name="Main Game" type="Node" node_paths=PackedStringArray("enemies_parent", "score_label", "highscore_label", "main_menu", "animiation_player", "powerup_timer")]
 script = ExtResource("1_xoika")
 player_fish = ExtResource("2_5hfuo")
 enemy_fish = ExtResource("3_yf0uh")
+ai_alt_enemy_fish = Array[CompressedTexture2D]([ExtResource("4_gmvtt"), ExtResource("5_xu8fx"), ExtResource("6_0ekmg")])
+ai_alt_enemy_fish_colliders = Array[PackedScene]([ExtResource("7_l54jb"), ExtResource("8_0jknx"), ExtResource("9_6hr75")])
+ai_alt_enemy_fish_scales = Array[float]([0.07, 0.035, 0.07])
 enemies_parent = NodePath("Enemies")
 score_label = NodePath("Score/Value")
 highscore_label = NodePath("Highscore/HighscoreValue")
 main_menu = NodePath("Main Menu")
 animiation_player = NodePath("AnimationPlayer")
+powerup_timer = NodePath("powerup_timer")
+show_comparison_cheat = true
+enable_ai_art = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -90,6 +102,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0.658824, 0.843137, 1)
+
+[node name="TextureRect" type="TextureRect" parent="Background"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="Enemies" type="Node2D" parent="."]
 
@@ -172,13 +189,11 @@ autostart = true
 [node name="Music" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("6_pmemp")
 volume_db = -15.0
-bus = &"Music"
 script = ExtResource("7_ho5cv")
 
 [node name="SubAmbience" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("8_2aa1m")
 volume_db = -10.0
-bus = &"Music"
 script = ExtResource("7_ho5cv")
 play_on_launch = true
 
@@ -200,6 +215,23 @@ libraries = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BottomOfTheScreen"]
 position = Vector2(574, 634)
 shape = SubResource("RectangleShape2D_nmj8y")
+
+[node name="powerup_timer" type="Node" parent="."]
+
+[node name="game_over" type="CenterContainer" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="game_over"]
+modulate = Color(1, 1, 1, 0.54902)
+layout_mode = 2
+text = "Game over
+press any key to continue"
+horizontal_alignment = 1
 
 [connection signal="game_started" from="." to="Audio/Music" method="_on_main_game_game_started"]
 [connection signal="game_started" from="." to="Audio/SubAmbience" method="_on_main_game_game_started"]
