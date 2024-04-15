@@ -116,7 +116,7 @@ scale = Vector2(-0.06, 0.06)
 texture = ExtResource("2_docw1")
 flip_h = true
 
-[node name="Area" type="Area2D" parent="Body"]
+[node name="Area" type="Area2D" parent="Body" groups=["player_collider"]]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Body/Area"]
 material = SubResource("ShaderMaterial_40008")

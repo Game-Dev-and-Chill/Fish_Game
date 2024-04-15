@@ -1,19 +1,25 @@
 extends Node
 
-@export var player_fish: PackedScene
-@export var enemy_fish: PackedScene
-@export var ai_alt_enemy_fish: Array[CompressedTexture2D]
-@export var ai_alt_enemy_fish_colliders: Array[PackedScene]
-@export var ai_alt_enemy_fish_scales: Array[float]
-@export var enemies_parent: Node2D
-@export var score_label: Label
-@export var highscore_label: Label
-@export var main_menu: PanelContainer
-@export var animiation_player: AnimationPlayer
-@export var powerup_timer: Node
+@export_category("Game Settings")
 @export var game_difficulty_multiplier: float = 1
 @export var show_comparison_cheat: bool = false
 @export var enable_ai_art: bool = false
+@export_category("Packed Scenes")
+@export var player_fish: PackedScene
+@export var enemy_fish: PackedScene
+@export_category("Resource Arrays")
+@export var ai_alt_enemy_fish: Array[CompressedTexture2D]
+@export var ai_alt_enemy_fish_colliders: Array[PackedScene]
+@export var ai_alt_enemy_fish_scales: Array[float]
+@export_category("Node References")
+@export var animiation_player: AnimationPlayer
+@export var main_menu: PanelContainer
+@export var enemies_parent: Node2D
+@export var score_label: Label
+@export var highscore_label: Label
+@export var powerup_timer: Node
+@export var pause_menu: Control
+
 
 const powerup: PackedScene = preload("res://scenes/Powerup.tscn")
 
@@ -131,7 +137,9 @@ func _spawn_enemy_fish():
 
 func game_start():
 	emit_signal("game_started")
-
+	
+	pause_menu.game_started = true
+	
 	player = player_fish.instantiate()
 	add_child(player)
 

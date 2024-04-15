@@ -1,6 +1,16 @@
 res://scenes/Main.tscn
 res://scenes/Enemy_Fish.gdshader
 res://resources/primary_theme.tres
-res://scripts/Body.gd
 res://scenes/Enemy_Fish.tscn
 res://scenes/Player_Fish.tscn
+res://scripts/PowerUp.gd
+res://scripts/Game.gd
+res://resources/blur.gdshader
+res://scripts/enemy.gd
+res://scripts/pause_menu.gd
+res://scripts/Body.gd
+res://scripts/bubble_spawner.gd
+res://scripts/credits_button.gd
+res://scripts/credits_screen.gd
+res://scripts/death_effect.gd
+res://scripts/Music.gd
