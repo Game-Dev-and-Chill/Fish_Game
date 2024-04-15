@@ -1,5 +1,6 @@
 res://scenes/Main.tscn
 res://scenes/Enemy_Fish.gdshader
 res://resources/primary_theme.tres
+res://scripts/Body.gd
 res://scenes/Enemy_Fish.tscn
 res://scenes/Player_Fish.tscn

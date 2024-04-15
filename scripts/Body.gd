@@ -29,6 +29,7 @@ var old_shader: Color
 
 var has_powerup: bool = false
 var powerup_timer: Timer = Timer.new()
+var direction : Vector2 = Vector2.ZERO
 
 
 func _ready():
@@ -42,9 +43,15 @@ func _ready():
 
 
 func _physics_process(_delta):
-	var direction = Input.get_vector("left", "right", "up", "down")
+	direction = Input.get_vector("left", "right", "up", "down")
 
-	rotation = direction.angle()
+	if direction.length() > 0:
+		rotation = lerp_angle(rotation, direction.angle(), 0.3)
+		if direction.x <= 0:
+			sprite.flip_v = true
+		else:
+			sprite.flip_v = false
+	
 
 	if direction.length_squared() > 0:
 		direction = direction.normalized()
